@@ -1,14 +1,38 @@
 package com.example.ootpisp_crud;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
 public class HelloController {
-    @FXML
-    private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void onClickMethodAdd() {
+
+    }
+
+    @FXML
+    public void onClickMethodDelete() {
+    }
+
+    @FXML
+    public void onClickMethodEdit() {
+    }
+
+    @FXML
+    public void ChooseAddPanel() {
+    }
+    @FXML
+    public void onClickMethodAnalyse() {
+    }
+
+    @FXML
+    public void Close() {
+    }
+
+    @FXML
+    public void onClickMethodAddSubmit() {
+    }
+
+    @FXML
+    public void onClickMethodEditSubmit() {
     }
 }
