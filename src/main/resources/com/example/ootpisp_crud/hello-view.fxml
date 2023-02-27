@@ -13,15 +13,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="1208.0" style="-fx-background-color: #9F4576;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ootpisp_crud.HelloController">
    <children>
-       <TableView fx:id="person_Table" layoutX="50.0" layoutY="37.0" prefHeight="550.0" prefWidth="512.0">
-           <columns>
-               <TableColumn fx:id="id_Table" prefWidth="45.0" text="ID" />
-               <TableColumn fx:id="person_Name" prefWidth="146.0" text="Name" />
-               <TableColumn fx:id="person_Surname" prefWidth="188.0" text="Surname" />
-               <TableColumn fx:id="position_Table" prefWidth="132.0" text="Position" />
-           </columns>
-       </TableView>
-      <Button fx:id="addButton" layoutX="50.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodAdd" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Add" textFill="#f5f5f5">
+      <TableView fx:id="person_Table" layoutX="50.0" layoutY="37.0" prefHeight="550.0" prefWidth="512.0">
+         <columns>
+            <TableColumn fx:id="id_Table" prefWidth="45.0" text="ID" />
+            <TableColumn fx:id="person_Name" prefWidth="146.0" text="Name" />
+            <TableColumn fx:id="person_Surname" prefWidth="188.0" text="Surname" />
+            <TableColumn fx:id="position_Table" prefWidth="132.0" text="Position" />
+         </columns>
+      </TableView>
+      <Button fx:id="view_Add_Panel_Button" layoutX="50.0" layoutY="631.0" mnemonicParsing="false" onAction="#view_Add_Panel_Method" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Add" textFill="#f5f5f5">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
@@ -29,7 +29,7 @@
             <Reflection />
          </effect>
       </Button>
-      <Button fx:id="deleteButton" layoutX="319.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodDelete" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Delete" textFill="WHITE">
+      <Button fx:id="view_Delete_Panel_Button" layoutX="319.0" layoutY="631.0" mnemonicParsing="false" onAction="#view_Delete_Panel_Method" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Delete" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
@@ -37,7 +37,7 @@
             <Reflection />
          </effect>
       </Button>
-      <Button fx:id="EditButton" layoutX="187.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodEdit" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Edit" textFill="#f5f3f3">
+      <Button fx:id="view_Edit_Panel_Button" layoutX="187.0" layoutY="631.0" mnemonicParsing="false" onAction="#view_Edit_Panel_Method" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Edit" textFill="#f5f3f3">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
@@ -48,7 +48,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="606.0" layoutX="626.0" layoutY="65.0" stroke="#000000" strokeType="INSIDE" width="5.0" />
       <AnchorPane fx:id="controls_Panel" layoutX="653.0" layoutY="11.0" prefHeight="742.0" prefWidth="541.0" visible="false">
          <children>
-            <Button fx:id="add_Submit_Button" layoutX="349.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickMethodAddSubmit" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #000000;" text="Submit" textFill="WHITE">
+            <Button fx:id="add_Submit_Button" layoutX="349.0" layoutY="650.0" mnemonicParsing="false" onAction="#Submit_Person_Adding_Method" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #000000;" text="Submit" textFill="WHITE">
                <effect>
                   <Reflection />
                </effect>
@@ -56,7 +56,7 @@
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="edit_Submit_Button" layoutX="349.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickMethodEditSubmit" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #000000;" text="Submit" textFill="WHITE">
+            <Button fx:id="edit_Submit_Button" layoutX="349.0" layoutY="650.0" mnemonicParsing="false" onAction="#Submit_Person_Editing_Method" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #000000;" text="Submit" textFill="WHITE">
                <effect>
                   <Reflection />
                </effect>
@@ -84,7 +84,7 @@
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="month_ComboBox" layoutX="220.0" layoutY="45.0" prefHeight="39.0" prefWidth="117.0">
+            <ComboBox fx:id="person_Month_ComboBox" layoutX="220.0" layoutY="45.0" prefHeight="39.0" prefWidth="117.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="JAN" />
@@ -105,12 +105,12 @@
                   <String fx:value="" />
                </value>
             </ComboBox>
-            <TextField fx:id="date_TextField" layoutX="57.0" layoutY="46.0" prefHeight="39.0" prefWidth="55.0">
+            <TextField fx:id="person_Date_TextField" layoutX="57.0" layoutY="46.0" prefHeight="39.0" prefWidth="55.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="year_TextField" layoutX="411.0" layoutY="45.0" prefHeight="39.0" prefWidth="84.0">
+            <TextField fx:id="person_Year_TextField" layoutX="411.0" layoutY="45.0" prefHeight="39.0" prefWidth="84.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -120,7 +120,7 @@
                   <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="name_TextField" layoutX="87.0" layoutY="95.0" prefHeight="39.0" prefWidth="205.0">
+            <TextField fx:id="person_Name_TextField" layoutX="87.0" layoutY="95.0" prefHeight="39.0" prefWidth="205.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -130,7 +130,7 @@
                   <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="surname_TextField" layoutX="88.0" layoutY="139.0" prefHeight="39.0" prefWidth="205.0">
+            <TextField fx:id="person_Surname_TextField" layoutX="88.0" layoutY="139.0" prefHeight="39.0" prefWidth="205.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -140,7 +140,7 @@
                   <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="gender_ComboBox" layoutX="88.0" layoutY="184.0" prefHeight="39.0" prefWidth="146.0">
+            <ComboBox fx:id="person_Sex_ComboBox" layoutX="88.0" layoutY="184.0" prefHeight="39.0" prefWidth="146.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Male" />
@@ -156,7 +156,7 @@
                   <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="email_TextField" layoutX="87.0" layoutY="232.0" prefHeight="39.0" prefWidth="205.0">
+            <TextField fx:id="person_Email_TextField" layoutX="87.0" layoutY="232.0" prefHeight="39.0" prefWidth="205.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -181,17 +181,17 @@
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="house_TextField" layoutX="441.0" layoutY="315.0" prefHeight="39.0" prefWidth="55.0">
+            <TextField fx:id="person_House_TextField" layoutX="441.0" layoutY="315.0" prefHeight="39.0" prefWidth="55.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="city_TextField" layoutX="42.0" layoutY="317.0" prefHeight="39.0" prefWidth="96.0">
+            <TextField fx:id="person_City_TextField" layoutX="42.0" layoutY="317.0" prefHeight="39.0" prefWidth="96.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="street_TextField" layoutX="197.0" layoutY="317.0" prefHeight="39.0" prefWidth="190.0">
+            <TextField fx:id="person_Street_TextField" layoutX="197.0" layoutY="317.0" prefHeight="39.0" prefWidth="190.0">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -201,7 +201,7 @@
                   <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="position_List_ComboBox" layoutX="83.0" layoutY="367.0" onAction="#ChooseAddPanel" prefHeight="39.0" prefWidth="146.0">
+            <ComboBox fx:id="person_Position_List_ComboBox" layoutX="83.0" layoutY="367.0" onAction="#Choose_Add_Person_Position_Panel" prefHeight="39.0" prefWidth="146.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Student" />
@@ -222,7 +222,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experiense" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experience" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
@@ -252,11 +252,11 @@
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="None" />
                            <String fx:value="Middle" />
-                           <String fx:value="Hight" />
+                           <String fx:value="Height" />
                         </FXCollections>
                      </items>
                   </ComboBox>
-                  <TextField fx:id="bonus_TextField" layoutX="108.0" layoutY="140.0" prefHeight="39.0" prefWidth="110.0">
+                  <TextField fx:id="manager_bonus_TextField" layoutX="108.0" layoutY="140.0" prefHeight="39.0" prefWidth="110.0">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -275,7 +275,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="105.0" prefHeight="21.0" prefWidth="84.0" text="Sceciality" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="105.0" prefHeight="21.0" prefWidth="84.0" text="Speciality" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
@@ -290,27 +290,27 @@
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="university_TextField" layoutX="112.0" layoutY="7.0" prefHeight="39.0" prefWidth="164.0">
+                  <TextField fx:id="student_University_TextField" layoutX="112.0" layoutY="7.0" prefHeight="39.0" prefWidth="164.0">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="faculty_TextField" layoutX="112.0" layoutY="51.0" prefHeight="39.0" prefWidth="164.0">
+                  <TextField fx:id="student_Faculty_TextField" layoutX="112.0" layoutY="51.0" prefHeight="39.0" prefWidth="164.0">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="specialisation_TextField" layoutX="112.0" layoutY="96.0" prefHeight="39.0" prefWidth="164.0">
+                  <TextField fx:id="student_Specialisation_TextField" layoutX="112.0" layoutY="96.0" prefHeight="39.0" prefWidth="164.0">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="course_TextField" layoutX="112.0" layoutY="140.0" prefHeight="39.0" prefWidth="96.0">
+                  <TextField fx:id="student_Course_TextField" layoutX="112.0" layoutY="140.0" prefHeight="39.0" prefWidth="96.0">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="group_TextField" layoutX="112.0" layoutY="185.0" prefHeight="39.0" prefWidth="164.0">
+                  <TextField fx:id="student_Group_TextField" layoutX="112.0" layoutY="185.0" prefHeight="39.0" prefWidth="164.0">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -324,7 +324,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experiense" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experience" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
@@ -392,7 +392,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experiense" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experience" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
@@ -443,7 +443,7 @@
                         </FXCollections>
                      </items>
                   </ComboBox>
-                  <ComboBox fx:id="desiner_Type_ComboBox" layoutX="108.0" layoutY="229.0" prefHeight="39.0" prefWidth="146.0" value="">
+                  <ComboBox fx:id="designer_Type_ComboBox" layoutX="108.0" layoutY="229.0" prefHeight="39.0" prefWidth="146.0" value="">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Game" />
@@ -461,7 +461,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experiense" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="55.0" prefHeight="21.0" prefWidth="96.0" text="Experience" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
                      </font>
@@ -507,7 +507,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Button fx:id="analyseButton" layoutX="452.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickMethodAnalyse" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Analyse" textFill="WHITE">
+      <Button fx:id="view_Analyze_Panel_Button" layoutX="452.0" layoutY="631.0" mnemonicParsing="false" onAction="#on_Click_View_Analyze_Panel_Method" prefHeight="54.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Analyse" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -518,7 +518,7 @@
       <AnchorPane fx:id="analyse_Panel" layoutX="276.0" layoutY="131.0" prefHeight="474.0" prefWidth="638.0" style="-fx-background-color: White;" visible="false">
          <children>
             <PieChart fx:id="pie_Chart" layoutX="47.0" layoutY="25.0" prefHeight="424.0" prefWidth="557.0" />
-            <Button fx:id="close" layoutX="583.0" mnemonicParsing="false" onAction="#Close" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: BLACK;" text="X" textFill="#f5efef" />
+            <Button fx:id="close" layoutX="583.0" mnemonicParsing="false" onAction="#close_Analyze_Panel_Method" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: BLACK;" text="X" textFill="#f5efef" />
          </children>
       </AnchorPane>
    </children>
